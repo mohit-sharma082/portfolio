@@ -1,5 +1,5 @@
 
-import Image from "next/image";
+
 import SectionWrapper from "@/components/section-wrapper";
 
 import { data } from "@/data/index";
@@ -22,7 +22,6 @@ const bio = data.bio;
 const contact = data.contact;
 const experience = data.experience;
 const name = data.name;
-const profileImage = data.profileImage;
 
 
   return (
@@ -58,6 +57,7 @@ const profileImage = data.profileImage;
           <div className="flex-1 flex flex-col  ">
             {experience.map((item, index) => (
               <div
+                key={index}
                 className="flex flex-col min-h-20 border-l-4 pl-4 transition relative pb-8"
               >
                 <div className="border-8 border-foreground  h-1 w-1 absolute left-[-10] top-1 rounded-full"></div>
