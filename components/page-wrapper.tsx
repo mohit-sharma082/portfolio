@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-const PageWrapper = ({ children }: { children: any }) => {
+const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -12,7 +13,7 @@ const PageWrapper = ({ children }: { children: any }) => {
     >
       {children}
     </motion.div>
-  )
-}
+  );
+};
 
-export default PageWrapper
+export default PageWrapper;
