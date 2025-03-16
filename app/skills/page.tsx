@@ -2,7 +2,7 @@
 import React from 'react';
 import { data } from "@/data/index";
 import PageWrapper from "@/components/page-wrapper";
-const { skills, projects, bio, contact, experience, name, profileImage } = data
+const { skills } = data
 import SectionWrapper from '@/components/section-wrapper'
 
 const page = () => {
