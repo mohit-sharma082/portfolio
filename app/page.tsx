@@ -5,7 +5,14 @@ import SectionWrapper from "@/components/section-wrapper";
 import { data } from "@/data/index";
 import PageWrapper from "@/components/page-wrapper";
 import { Button } from "@/components/ui/button";
-const { skills, projects, bio, contact, experience, name, profileImage } = data
+const skills = data.skills;
+const projects = data.projects;
+const bio = data.bio;
+const contact = data.contact;
+const experience = data.experience;
+const name = data.name;
+const profileImage = data.profileImage;
+
 
 const formatDate = (str: string) => {
   const date = new Date(str)
