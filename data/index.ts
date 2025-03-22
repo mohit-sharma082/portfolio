@@ -2,8 +2,9 @@ const defaultImage =
 	'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpuYdLEzBvwemix8pwsncUkLLOQqnByncadg&s';
 export const data = {
 	name: 'Mohit',
-	bio: `Passionate MERN stack developer with a problem-solving mindset, dedicated to building scalable and user-centric web applications. 
-Eager to apply my expertise in crafting seamless digital experiences while continuously learning and evolving in the ever-changing tech landscape.`,
+	bio: `I'm a MERN stack enthusiast who loves solving puzzles and building cool web apps.
+I craft scalable, user-friendly experiences while keeping things fun and fresh. Always learning and ready to tackle the next big challenge in the tech world.
+Let's create something amazing together!`,
 	profileImage: 'https://avatars.githubusercontent.com/u/116288240',
 	contact: {
 		email: 'mohitsharmafeb2004@gmail.com',
@@ -103,18 +104,18 @@ Eager to apply my expertise in crafting seamless digital experiences while conti
 			image: defaultImage,
 			resource: 'https://git-scm.com/doc',
 		},
-		{
-			name: 'Turbo Repo',
-			level: 'basic',
-			image: defaultImage,
-			resource: 'https://turbo.build/repo/docs',
-		},
-		{
-			name: 'ShadCN',
-			level: 'basic',
-			image: defaultImage,
-			resource: 'https://ui.shadcn.com/docs',
-		},
+		// {
+		// 	name: 'Turbo Repo',
+		// 	level: 'basic',
+		// 	image: defaultImage,
+		// 	resource: 'https://turbo.build/repo/docs',
+		// },
+		// {
+		// 	name: 'ShadCN',
+		// 	level: 'basic',
+		// 	image: defaultImage,
+		// 	resource: 'https://ui.shadcn.com/docs',
+		// },
 		{
 			name: 'C',
 			level: 'basic',
