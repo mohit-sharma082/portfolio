@@ -1,48 +1,40 @@
-# --------------------------------------------
-# 1. Build stage: install deps and build app
-# --------------------------------------------
+# --------------------------------------------------------------
+# 1) Build stage: install deps, build & export to "out/"
+# --------------------------------------------------------------
 FROM node:18-alpine AS builder
 
+# 1.1 Set working directory
 WORKDIR /app
 
-# Copy manifests for pnpm
+# 1.2 Copy only manifest files first (for layer caching)
 COPY package.json pnpm-lock.yaml ./
 
-# Install pnpm and project dependencies
+# 1.3 Install pnpm and project dependencies
 RUN npm install -g pnpm \
     && pnpm install --frozen-lockfile
 
-# Copy source and build
+# 1.4 Copy the rest of your source code
 COPY . .
+
+# 1.5 Build & export (assumes "pnpm build" calls `next build && next export`)
 RUN pnpm build
 
-# --------------------------------------------
-# 2. Production stage: only runtime artifacts
-# --------------------------------------------
-FROM node:18-alpine AS runner
+# --------------------------------------------------------------
+# 2) Runner stage: serve "/app/out" via nginx
+# --------------------------------------------------------------
+FROM nginx:stable-alpine AS runner
 
-# Create a non-root user
-RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+# 2.1 Remove default nginx.conf (optional, but ensures no conflicts)
+RUN rm /etc/nginx/conf.d/default.conf
 
-WORKDIR /app
+# 2.2 Copy our custom nginx.conf into place
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy manifests again for prod-only install
-COPY package.json pnpm-lock.yaml ./
+# 2.3 Copy the exported static files from the "builder" stage
+COPY --from=builder /app/out /usr/share/nginx/html
 
-# Install pnpm and only production deps
-RUN npm install -g pnpm \
-    && pnpm install --prod --frozen-lockfile
+# 2.4 Expose port 80
+EXPOSE 80
 
-# Copy the built output from builder
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.ts ./
-
-# Drop to non-root user
-USER nextjs
-
-ENV NODE_ENV=production
-EXPOSE 3000
-
-# Start Next.js in production mode
-CMD ["pnpm", "start"]
+# 2.5 Launch nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
