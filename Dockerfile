@@ -1,52 +1,48 @@
 # --------------------------------------------
-# 1. Build stage: install deps and build
+# 1. Build stage: install deps and build app
 # --------------------------------------------
 FROM node:18-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy package manifests first (for caching deps)
-COPY package.json yarn.lock* package-lock.json* ./
+# Copy manifests for pnpm
+COPY package.json pnpm-lock.yaml ./
 
-# Install all dependencies
-RUN yarn install --frozen-lockfile
+# Install pnpm and project dependencies
+RUN npm install -g pnpm \
+    && pnpm install --frozen-lockfile
 
-# Copy the rest of the source code
+# Copy source and build
 COPY . .
-
-# Build the Next.js app for production
-RUN yarn build
+RUN pnpm build
 
 # --------------------------------------------
-# 2. Production stage: run only what's needed
+# 2. Production stage: only runtime artifacts
 # --------------------------------------------
 FROM node:18-alpine AS runner
 
-# Create a non-root user to run the app
+# Create a non-root user
 RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
 
 WORKDIR /app
 
-# Copy package manifests again to install only prod deps
-COPY package.json yarn.lock* package-lock.json* ./
+# Copy manifests again for prod-only install
+COPY package.json pnpm-lock.yaml ./
 
-# Install only production dependencies
-RUN yarn install --frozen-lockfile --production
+# Install pnpm and only production deps
+RUN npm install -g pnpm \
+    && pnpm install --prod --frozen-lockfile
 
-# Copy the built output and public folder from builder
+# Copy the built output from builder
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./
 
-# Switch to non-root user
+# Drop to non-root user
 USER nextjs
 
-# Force production mode
 ENV NODE_ENV=production
-
-# Expose default Next.js port
 EXPOSE 3000
 
-# Start the app
-CMD ["yarn", "start"]
+# Start Next.js in production mode
+CMD ["pnpm", "start"]
