@@ -36,7 +36,7 @@ RUN npm install -g pnpm \
 # Copy the built output from builder
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/next.config.ts ./
 
 # Drop to non-root user
 USER nextjs
