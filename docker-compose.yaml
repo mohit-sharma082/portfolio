@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: 'always'
+    ports:
+    - '8080:80'
