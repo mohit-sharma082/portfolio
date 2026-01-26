@@ -307,19 +307,52 @@ export const data = {
             images: [
                 {
                     heading: 'Home Screen',
-                    items: [],
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/home.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/home_lists_4.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/home_movies_lists.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/home_movies_lists_2.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/home_movies_lists_3.png',
+                    ],
                 },
                 {
-                    heading: 'Search Screen',
-                    items: [],
+                    heading: 'Floating Nav Section',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/floating_nav.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/floating_nav_2.png',
+                    ],
+                },
+
+                {
+                    heading: 'Content Details Sections',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/cast-crew_section.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/tmdb_reviews.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/tmdb_reviews_s_2.png',
+                    ],
+                },
+
+                {
+                    heading: 'Media Gallery Section',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/media_gallery_section.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/media_gallery_section_2.png',
+                    ],
                 },
                 {
                     heading: 'Movie details Screen',
-                    items: [],
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/movie_details.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/movie_details_similar_movies.png',
+                    ],
                 },
                 {
                     heading: 'Tv Show details Screen',
-                    items: [],
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/tv_show_details.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/tv_show_details_2.png',
+                        'https://raw.githubusercontent.com/mohit-sharma082/flixr/refs/heads/main/images/tv_show_seasons.png',
+                    ],
                 },
             ],
         },

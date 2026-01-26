@@ -52,7 +52,7 @@ const ProjectDetailsPage = () => {
                     className='fixed h-screen inset-0 bg-black/80 z-50 flex items-center justify-center p-4'
                     onClick={() => setSelectedImage(null)}>
                     <div
-                        className='relative max-w-[90vw] md:max-w-7xl max-h-[80vh]  border-4 rounded-sm overflow-hidden'
+                        className='relative max-w-[90vw] max-h-[80vh]  border-4 rounded-sm overflow-hidden'
                         onClick={(e) => e.stopPropagation()}>
                         <img
                             src={selectedImage}
@@ -157,8 +157,9 @@ const ProjectDetailsPage = () => {
                                                 onClick={() =>
                                                     setSelectedImage(imgSrc)
                                                 }
+                                                loading='lazy'
                                                 alt={`${imageSection.heading} ${imgIndex + 1}`}
-                                                className='w-full h-auto rounded-lg border border-border'
+                                                className='cursor-pointer hover:scale-105 transition-all duration-300 w-full min-h-32 min-w-32 bg-foreground/5 h-auto rounded-lg border border-border'
                                             />
                                         ),
                                     )
