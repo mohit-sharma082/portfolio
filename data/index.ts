@@ -226,11 +226,102 @@ export const data = {
     ],
     projects: [
         {
+            id: 1,
             name: 'Animersive',
             description:
                 'Animersive is a fun, personal project built with React Native. It leverages web scraping to gather and display detailed anime information, creating an immersive experience for users to explore their favorite animes..',
             techStack: ['React native'],
+            tags: ['react native', 'mobile app'],
             url: 'https://github.com/mohit-sharma082/Animersive',
+            status: 'discontinued', // ongoing | completed | paused | discontinued | planned | archived
+
+            images: [
+                {
+                    heading: 'Home Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/home.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Continue Exploring Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/continue_exploring.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/continue_exploring_2.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/continue_exploring_3.jpeg',
+                    ],
+                },
+
+                {
+                    heading: 'Search Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/search_page.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/search_page_2.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Details Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/details.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/details_2.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/details_3.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/details_4.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Player Section',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/player.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/player_2.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Profile Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/profile.jpeg',
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/profile_2.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Genres Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/genres_page.jpeg',
+                    ],
+                },
+                {
+                    heading: 'Studio Screen',
+                    items: [
+                        'https://raw.githubusercontent.com/mohit-sharma082/Animersive/refs/heads/main/images/studio_page.jpeg',
+                    ],
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: 'Flixr',
+            description:
+                'Flixr is a project made using tmdb api to browse movies and tv shows. It offers features like searching, viewing detailed information about each title, providing an engaging experience for movie enthusiasts.',
+            techStack: ['React', 'Next.js', 'TailwindCSS'],
+            tags: ['typescript', 'next.js', 'web app', 'entertainment'],
+            url: 'https://github.com/mohit-sharma082/flixr',
+            status: 'ongoing',
+            images: [
+                {
+                    heading: 'Home Screen',
+                    items: [],
+                },
+                {
+                    heading: 'Search Screen',
+                    items: [],
+                },
+                {
+                    heading: 'Movie details Screen',
+                    items: [],
+                },
+                {
+                    heading: 'Tv Show details Screen',
+                    items: [],
+                },
+            ],
         },
     ],
 };

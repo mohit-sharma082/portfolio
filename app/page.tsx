@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { data } from '@/data/index';
-import { Moon, Sun, Github, Linkedin } from 'lucide-react';
-
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function Home() {
     const bio = data.bio;
@@ -26,7 +26,7 @@ export default function Home() {
                     }
                 });
             },
-            { threshold: 0.3, rootMargin: '0px 0px -20% 0px' }
+            { threshold: 0.3, rootMargin: '0px 0px -20% 0px' },
         );
 
         sectionsRef.current.forEach((section) => {
@@ -254,21 +254,23 @@ export default function Home() {
                                             {project.description}
                                         </p>
 
-                                        <div className='flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300'>
-                                            <span>Explore</span>
-                                            <svg
-                                                className='w-4 h-4 transform group-hover:translate-x-1 group-hover:-rotate-45 group-hover:size-3  transition-all duration-300'
-                                                fill='none'
-                                                stroke='currentColor'
-                                                viewBox='0 0 24 24'>
-                                                <path
-                                                    strokeLinecap='round'
-                                                    strokeLinejoin='round'
-                                                    strokeWidth={2}
-                                                    d='M17 8l4 4m0 0l-4 4m4-4H3'
-                                                />
-                                            </svg>
-                                        </div>
+                                        <Link href={'/projects/' + project.id}>
+                                            <div className='flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300'>
+                                                <span>Explore</span>
+                                                <svg
+                                                    className='w-4 h-4 transform group-hover:translate-x-1 group-hover:-rotate-45 group-hover:size-3  transition-all duration-300'
+                                                    fill='none'
+                                                    stroke='currentColor'
+                                                    viewBox='0 0 24 24'>
+                                                    <path
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                        strokeWidth={2}
+                                                        d='M17 8l4 4m0 0l-4 4m4-4H3'
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </article>
                             ))}
