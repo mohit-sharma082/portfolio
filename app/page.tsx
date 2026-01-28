@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { data } from '@/data/index';
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 export default function Home() {
     const bio = data.bio;
@@ -15,6 +14,27 @@ export default function Home() {
     useEffect(() => {
         document.documentElement.classList.toggle('dark', isDark);
     }, [isDark]);
+
+    const calculateDuration = useCallback((start: Date, end: Date) => {
+        const startDate = new Date(start);
+        const endDate = end ? new Date(end) : new Date();
+        const totalMonths =
+            (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+            (endDate.getMonth() - startDate.getMonth());
+
+        const years = Math.floor(totalMonths / 12);
+        const months = totalMonths % 12;
+
+        let durationStr = '';
+        if (years > 0) {
+            durationStr += `${years} year${years > 1 ? 's' : ''} `;
+        }
+        if (months > 0) {
+            durationStr += `${months} month${months > 1 ? 's' : ''}`;
+        }
+
+        return durationStr.trim();
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -35,6 +55,8 @@ export default function Home() {
 
         return () => observer.disconnect();
     }, []);
+    const courseraCertImgPrefix =
+        'https://coursera-certificate-images.s3.amazonaws.com/';
 
     const toggleTheme = () => {
         setIsDark(!isDark);
@@ -44,7 +66,13 @@ export default function Home() {
         <div className='min-h-screen bg-background text-foreground relative '>
             <nav className='fixed right-6 top-1/2 -translate-y-1/2 lg:left-8 border-amber-600'>
                 <div className='flex flex-col gap-4'>
-                    {['intro', 'work', 'projects', 'connect'].map((section) => (
+                    {[
+                        'intro',
+                        'work',
+                        'projects',
+                        'certifications',
+                        'connect',
+                    ].map((section) => (
                         <button
                             key={section}
                             onClick={() =>
@@ -173,8 +201,26 @@ export default function Home() {
                     ref={(el: any) => (sectionsRef.current[1] = el)}
                     className='snap-center min-h-screen py-32 opacity-0'>
                     <div className='space-y-16'>
-                        <div className='flex items-end justify-between'>
-                            <h2 className='text-4xl font-light'>Experience</h2>
+                        <div className='flex items-end justify-between '>
+                            <div>
+                                <h2 className='text-4xl font-light'>
+                                    Experience
+                                </h2>
+                                <span className=' w-fit text-sm text-muted-foreground '>
+                                    {calculateDuration(
+                                        new Date(
+                                            data.experience[
+                                                data.experience.length - 1
+                                            ].started.month +
+                                                '-' +
+                                                data.experience[
+                                                    data.experience.length - 1
+                                                ].started.year,
+                                        ),
+                                        new Date(),
+                                    )}
+                                </span>
+                            </div>
                             <div className='text-sm text-muted-foreground font-mono'>
                                 {
                                     data.experience[data.experience.length - 1]
@@ -205,6 +251,7 @@ export default function Home() {
                                             <h3 className='text-xl font-medium'>
                                                 {job.title}
                                             </h3>
+
                                             <div className='text-muted-foreground font-bold tracking-wide my-2 hover:underline underline-offset-2 '>
                                                 <a
                                                     href={job.company.link}
@@ -212,6 +259,23 @@ export default function Home() {
                                                     rel='noopener noreferrer'>
                                                     {job.company.name}
                                                 </a>
+                                            </div>
+                                            <div className='w-fit text-xs text-muted-foreground text-pretty border-y py-2 my-2'>
+                                                {calculateDuration(
+                                                    new Date(
+                                                        job.started.month +
+                                                            '-' +
+                                                            job.started.year,
+                                                    ),
+                                                    job.ended
+                                                        ? new Date(
+                                                              job.ended.month +
+                                                                  '-' +
+                                                                  job.ended
+                                                                      .year,
+                                                          )
+                                                        : new Date(),
+                                                )}
                                             </div>
                                         </div>
                                         <p className='text-muted-foreground leading-relaxed max-w-lg'>
@@ -236,7 +300,7 @@ export default function Home() {
                 <section
                     id='projects'
                     ref={(el: any) => (sectionsRef.current[2] = el)}
-                    className='min-h-[50vh] py-32 opacity-0'>
+                    className='snap-center min-h-screen h-fit py-32 opacity-0'>
                     <div className='space-y-16'>
                         <h2 className='text-4xl font-light'>Recent projects</h2>
 
@@ -277,10 +341,61 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+                <section
+                    key={'certifications'}
+                    id='certifications'
+                    ref={(el: any) => (sectionsRef.current[3] = el)}
+                    className='snap-center min-h-screen h-fit py-32 opacity-10'>
+                    <div className='space-y-16'>
+                        <h2 className='text-4xl font-light'>Certifications</h2>
 
+                        <div className='grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8'>
+                            {data.certifications.map((certification, index) => (
+                                <article
+                                    key={'cert_' + index}
+                                    className='group hover:border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg cursor-pointer'>
+                                    <a
+                                        href={certification.link}
+                                        target='_blank'
+                                        rel='noopener noreferrer '>
+                                        <img
+                                            // loading='lazy'
+                                            src={
+                                                courseraCertImgPrefix +
+                                                certification.credential_id
+                                            }
+                                            alt={certification.title}
+                                            className='min-h-[150px] min-w-[150px] bg-foreground/5 w-full group-hover:p-2 h-auto mb-4 rounded-lg  hover:border-muted-foreground/50 transition-all duration-300'
+                                        />
+                                    </a>
+                                    <div className='space-y-4 p-2 min-h-28 '>
+                                        <h3 className='text-lg line-clamp-3   font-medium group-hover:text-muted-foreground transition-colors duration-300'>
+                                            {certification.title}
+                                        </h3>
+                                        <div className='flex flex-wrap gap-2'>
+                                            {certification.skills
+                                                .slice(0, 5)
+                                                .map((skill, si) => (
+                                                    <span
+                                                        key={
+                                                            index +
+                                                            '_skill_' +
+                                                            si
+                                                        }
+                                                        className='px-2.5 py-1 text-xs text-foreground/80 rounded-full border-2 border-muted-foreground/20 transition-colors duration-500'>
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
                 <section
                     id='connect'
-                    ref={(el: any) => (sectionsRef.current[3] = el)}
+                    ref={(el: any) => (sectionsRef.current[4] = el)}
                     className='snap-center py-32 opacity-0'>
                     <div className='grid lg:grid-cols-2 gap-16'>
                         <div className='space-y-8'>
