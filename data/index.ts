@@ -2,8 +2,96 @@
 const defaultImage =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpuYdLEzBvwemix8pwsncUkLLOQqnByncadg&s';
 
+type Profile = {
+    name: string;
+    first_name: string;
+    last_name: string;
+    location: {
+        city: string;
+        country: string;
+    };
+    bio: {
+        intro: string;
+        highlights: string[];
+        body: string;
+        closing: string;
+    };
+    tech_stack: string[];
+    profileImage: string;
+    contact: {
+        email: string;
+        socials: {
+            platform: string;
+            handle: string;
+            url: string;
+        }[];
+    };
+    education: {
+        degree: string;
+        field: string;
+        institution: string;
+        startYear: number;
+        endYear: number | null;
+        details: string[];
+    }[];
+    certifications: {
+        title: string;
+        provider: string;
+        by: string;
+        type: string;
+        completion_date: string;
+        credential_id: string;
+        link: string;
+        skills: string[];
+    }[];
+    skills: {
+        name: string;
+        level: 'basic' | 'intermediate' | 'advanced' | 'expert';
+        image: string;
+        resource: string;
+    }[];
+    experience: {
+        title: string;
+        description: string;
+        company: {
+            name: string;
+            link: string;
+        };
+        tech: string[];
+        started: {
+            date: string;
+            month: string;
+            year: string;
+        };
+        ended: {
+            date: string;
+            month: string;
+            year: string;
+        } | null;
+    }[];
+    projects: {
+        id: number;
+        name: string;
+        description: string;
+        techStack: string[];
+        tags: string[];
+        url: string;
+        status:
+            | 'ongoing'
+            | 'completed'
+            | 'paused'
+            | 'discontinued'
+            | 'planned'
+            | 'archived';
+        images: {
+            heading: string;
+            items: string[];
+        }[];
+    }[];
+};
+
 // Profile information
-export const data = {
+export const data: Profile = {
     name: 'Mohit Sharma',
     first_name: 'Mohit',
     last_name: 'Sharma',
@@ -34,6 +122,155 @@ export const data = {
             },
         ],
     },
+    education: [
+        {
+            degree: 'Bachelor of Arts (BA)',
+            field: '',
+            institution: 'School of Open Learning, University of Delhi',
+            startYear: 2022,
+            endYear: 2025,
+            details: [
+                'Completed coursework in Political Theory, International Relations, and Public Administration.',
+                'Engaged in various seminars and workshops to enhance understanding of political systems.',
+            ],
+        },
+        {
+            degree: 'Master of Computer Applications (MCA)',
+            field: 'Computer Applications',
+            institution: 'Manipal University Jaipur',
+            startYear: 2025,
+            endYear: null,
+            details: [
+                'Pursuing advanced studies in software development, data structures, and algorithms.',
+                'Participating in coding bootcamps and hackathons to apply theoretical knowledge practically.',
+            ],
+        },
+    ],
+    certifications: [
+        {
+            title: 'Introduction to Software Engineering',
+            provider: 'Coursera',
+            by: 'IBM',
+            type: 'course',
+            completion_date: 'January 28, 2026',
+            credential_id: 'TGAX7GW0MSR9',
+            link: 'https://www.coursera.org/account/accomplishments/verify/TGAX7GW0MSR9',
+            skills: [
+                'Software Development Tools',
+                'Python Programming',
+                'Software Design Patterns',
+                'Development Environment',
+                'Application Deployment',
+                'Front-End Web Development',
+                'Software Engineering',
+                'Computer Programming',
+                'Back-End Web Development',
+                'Web Applications',
+                'Software Development',
+                'Software Documentation',
+                'Unified Modeling Language',
+                'Programming Principles',
+                'Software Development Life Cycle',
+                'Software Development Methodologies',
+                'Software Architecture',
+                'Software Design',
+            ],
+        },
+        {
+            title: 'Hands-on Introduction to Linux Commands and Shell Scripting',
+            provider: 'Coursera',
+            by: 'IBM',
+            type: 'course',
+            completion_date: 'April 5, 2025',
+            credential_id: 'DTH7JLU8V51Q',
+            link: 'https://www.coursera.org/account/accomplishments/verify/DTH7JLU8V51Q',
+            skills: [
+                'File Management',
+                'Shell Script',
+                'Linux Commands',
+                'OS Process Management',
+                'Command-Line Interface',
+                'Linux Administration',
+                'File Systems',
+                'Unix',
+                'Scripting',
+                'Software Installation',
+                'Operating Systems',
+                'Bash (Scripting Language)',
+                'Linux',
+                'Automation',
+                'Network Protocols',
+                'Ubuntu',
+                'Unix Commands',
+            ],
+        },
+        {
+            title: 'How Computers Work',
+            provider: 'Coursera',
+            by: 'University of London',
+            type: 'course',
+            completion_date: 'July 17, 2025',
+            credential_id: '3M4SB22Z43A6',
+            link: 'https://www.coursera.org/account/accomplishments/verify/3M4SB22Z43A6',
+            skills: [
+                'Problem Management',
+                'Cybersecurity',
+                'Computer Science',
+                'Debugging',
+                'Web Applications',
+                'Computer Networking',
+                'Computational Thinking',
+                'Web Design and Development',
+                'Computer Literacy',
+                'Software Architecture',
+                'Network Security',
+                'Computer Systems',
+                'Data Storage',
+            ],
+        },
+        {
+            title: 'Explore Core Data Concepts in Microsoft Azure',
+            provider: 'Coursera',
+            by: 'Microsoft',
+            type: 'course',
+            completion_date: 'November 15, 2025',
+            credential_id: '7LNDX7RQ71JD',
+            link: 'https://www.coursera.org/account/accomplishments/verify/7LNDX7RQ71JD',
+            skills: [
+                'Database Management',
+                'Data Analysis',
+                'Database Systems',
+                'Microsoft Azure',
+                'Cloud Computing',
+                'NoSQL',
+                'Data Management',
+                'Unstructured Data',
+                'Data Visualization Software',
+                'Transaction Processing',
+                'Data Processing',
+                'Databases',
+                'Data Storage',
+                'Relational Databases',
+                'Query Languages',
+            ],
+        },
+        {
+            title: 'TypeScript Variables and Data Types',
+            provider: 'Coursera',
+            by: 'Coursera',
+            type: 'course',
+            completion_date: 'December 8, 2025',
+            credential_id: '290J3O00QPXC',
+            link: 'https://www.coursera.org/account/accomplishments/verify/290J3O00QPXC',
+            skills: [
+                'Web Development Tools',
+                'Javascript',
+                'Programming Principles',
+                'TypeScript',
+                'Web Language',
+            ],
+        },
+    ],
     skills: [
         {
             name: 'JavaScript',
@@ -170,17 +407,6 @@ export const data = {
         },
     ],
     experience: [
-        /**
-         * 
-         {
-            year: '2023',
-            role: 'Senior Frontend Engineer',
-            company: 'Vercel',
-            description:
-                'Leading frontend architecture for developer tools and AI-powered features.',
-            tech: ['React', 'TypeScript', 'Next.js'],
-        },
-         */
         {
             title: 'Associate Software Development Engineer',
             description: `Working on various projects using React and Node.js.`,
