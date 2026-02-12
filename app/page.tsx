@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { data } from '@/data/index';
-import { Moon, Sun } from 'lucide-react';
+import { ArrowRight, Moon, Sun } from 'lucide-react';
 
 export default function Home() {
     const bio = data.bio;
@@ -63,7 +63,7 @@ export default function Home() {
     };
 
     return (
-        <div className='min-h-screen bg-background text-foreground relative '>
+        <div className='min-h-screen bg-primary/5 dark:bg-background text-foreground relative '>
             <nav className='fixed right-6 top-1/2 -translate-y-1/2 lg:left-8 border-amber-600'>
                 <div className='flex flex-col gap-4'>
                     {[
@@ -91,7 +91,7 @@ export default function Home() {
                 </div>
             </nav>
 
-            <main className='max-w-4xl mx-auto px-8 pr-10 lg:px-16 snap-y snap-mandatory scroll-smooth '>
+            <main className='max-w-5xl mx-auto px-8 pr-10 lg:px-16 snap-y snap-mandatory scroll-smooth '>
                 <header
                     id='intro'
                     ref={(el: any) => (sectionsRef.current[0] = el)}
@@ -100,7 +100,7 @@ export default function Home() {
                         <div className='lg:col-span-3 space-y-8'>
                             <div className='space-y-2'>
                                 <div className='text-sm text-muted-foreground font-mono tracking-wider'>
-                                    PORTFOLIO / 2025
+                                    PORTFOLIO / 2026
                                 </div>
                                 <h1 className='text-6xl lg:text-7xl font-light tracking-tight'>
                                     {data.first_name}
@@ -126,17 +126,17 @@ export default function Home() {
                                         </span>
                                     ))}
                                     .
-                                    <span className='block text-sm my-2 text-muted-foreground leading-relaxed'>
+                                    <span className='block text-sm mt-4 text-muted-foreground leading-relaxed'>
                                         {bio.body}
                                     </span>
-                                    <span className='block text-sm my-2 text-muted-foreground leading-relaxed'>
+                                    <span className='block text-sm mb-4 text-muted-foreground leading-relaxed'>
                                         {bio.closing}
                                     </span>
                                 </p>
 
-                                <div className='flex items-center gap-4 text-sm text-muted-foreground'>
+                                <div className='flex items-center font-bold gap-4 text-sm text-muted-foreground'>
                                     <div className='flex items-center gap-2'>
-                                        <div className='w-2 h-2 bg-blue-500 rounded-full animate-pulse'></div>
+                                        <div className='w-2 h-2 bg-primary rounded-full animate-pulse'></div>
                                         Working
                                     </div>
                                     |
@@ -196,7 +196,8 @@ export default function Home() {
                     </div>
                 </header>
 
-                <section
+                {/* WORK */}
+                {/* <section
                     id='work'
                     ref={(el: any) => (sectionsRef.current[1] = el)}
                     className='snap-center min-h-screen py-32 opacity-0'>
@@ -296,11 +297,115 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
+                </section> */}
+
+                <section
+                    id='work'
+                    ref={(el: any) => (sectionsRef.current[1] = el)}
+                    className='snap-center min-h-screen py-32 opacity-0'>
+                    <div className='space-y-4'>
+                        <div className='flex items-end justify-between '>
+                            <div>
+                                <h2 className='text-4xl font-light'>
+                                    Experience
+                                </h2>
+                                <span className=' w-fit text-sm text-muted-foreground '>
+                                    {calculateDuration(
+                                        new Date(
+                                            data.experience[
+                                                data.experience.length - 1
+                                            ].started.month +
+                                                '-' +
+                                                data.experience[
+                                                    data.experience.length - 1
+                                                ].started.year,
+                                        ),
+                                        new Date(),
+                                    )}
+                                </span>
+                            </div>
+                            <div className='text-sm text-muted-foreground font-mono'>
+                                {
+                                    data.experience[data.experience.length - 1]
+                                        .started.year
+                                }{' '}
+                                - {new Date().getFullYear()}
+                            </div>
+                        </div>
+
+                        <div className='space-y-12'>
+                            {data.experience.map((job, index) => (
+                                <div
+                                    key={index}
+                                    className='group grid lg:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-border/50 hover:border-border transition-colors duration-500'>
+                                    <div className='lg:col-span-2'>
+                                        <div className='w-full '>
+                                            <div className='text-xs font-medium tracking-wide text-muted-foreground'>
+                                                {job.started.month}
+                                            </div>
+                                        </div>
+                                        <div className='text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500'>
+                                            {job.started.year}
+                                        </div>
+                                    </div>
+
+                                    <div className='lg:col-span-6'>
+                                        <div>
+                                            <h3 className='text-xl font-medium'>
+                                                {job.title}
+                                            </h3>
+
+                                            <div className='text-primary/80 group-hover:text-primary font-bold tracking-wide my-2 hover:underline underline-offset-2 '>
+                                                <a
+                                                    href={job.company.link}
+                                                    target='_blank'
+                                                    rel='noopener noreferrer'>
+                                                    {job.company.name}
+                                                </a>
+                                            </div>
+                                            <div className='w-fit text-xs text-muted-foreground text-pretty border-y border-border/20 py-2 my-2'>
+                                                {calculateDuration(
+                                                    new Date(
+                                                        job.started.month +
+                                                            '-' +
+                                                            job.started.year,
+                                                    ),
+                                                    job.ended
+                                                        ? new Date(
+                                                              job.ended.month +
+                                                                  '-' +
+                                                                  job.ended
+                                                                      .year,
+                                                          )
+                                                        : new Date(),
+                                                )}
+                                            </div>
+                                        </div>
+                                        <p className='text-muted-foreground leading-relaxed max-w-lg'>
+                                            {job.description}
+                                        </p>
+                                    </div>
+
+                                    <div className='lg:col-span-4 flex flex-wrap gap-2 items-start lg:justify-end'>
+                                        {job.tech.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className='px-2.5 py-1.5 text-xs font-medium text-foreground border border-primary/30 bg-secondary rounded-full hover:border-primary/50 transition-all duration-300'>
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </section>
+
+                {/* PROJECTS */}
                 <section
                     id='projects'
                     ref={(el: any) => (sectionsRef.current[2] = el)}
-                    className='snap-center min-h-screen h-fit py-32 opacity-0'>
+                    className='snap-center min-h-[70vh] h-fit py-32 opacity-0'>
                     <div className='space-y-16'>
                         <h2 className='text-4xl font-light'>Recent projects</h2>
 
@@ -308,31 +413,27 @@ export default function Home() {
                             {data.projects.map((project, index) => (
                                 <article
                                     key={index}
-                                    className='group p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer'>
+                                    className='group p-8 border border-border bg-card rounded-lg hover:border-primary/60 hover:shadow-lg transition-all duration-500 cursor-pointer'>
                                     <div className='space-y-4'>
-                                        <h3 className='text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300'>
-                                            {project.name}
-                                        </h3>
+                                        <div className='flex items-center gap-2'>
+                                            <div className='w-3 h-3 rounded-full bg-primary'></div>
+                                            <h3 className='text-xl font-medium group-hover:text-primary transition-colors duration-300'>
+                                                {project.name}
+                                            </h3>
+                                        </div>
 
-                                        <p className='text-muted-foreground leading-relaxed'>
+                                        <p className='text-muted-foreground text-sm text-pretty leading-relaxed max-w-[80%]'>
                                             {project.description}
                                         </p>
 
                                         <Link href={'/projects/' + project.id}>
-                                            <div className='flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300'>
-                                                <span>Explore</span>
-                                                <svg
-                                                    className='w-4 h-4 transform group-hover:translate-x-1 group-hover:-rotate-45 group-hover:size-3  transition-all duration-300'
-                                                    fill='none'
-                                                    stroke='currentColor'
-                                                    viewBox='0 0 24 24'>
-                                                    <path
-                                                        strokeLinecap='round'
-                                                        strokeLinejoin='round'
-                                                        strokeWidth={2}
-                                                        d='M17 8l4 4m0 0l-4 4m4-4H3'
-                                                    />
-                                                </svg>
+                                            <div className='flex items-center gap-2 text-sm text-primary group-hover:gap-3 transition-all duration-300'>
+                                                <span>Explore Project</span>
+                                                <ArrowRight
+                                                    strokeWidth={2.8}
+                                                    size={16}
+                                                    className='transform group-hover:-rotate-45 group-hover:-translate-x-1 transition-all duration-300'
+                                                />
                                             </div>
                                         </Link>
                                     </div>
@@ -341,48 +442,64 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+
+                {/* CERTIFICATIONS */}
                 <section
                     key={'certifications'}
                     id='certifications'
                     ref={(el: any) => (sectionsRef.current[3] = el)}
-                    className='snap-center min-h-screen h-fit py-32 opacity-10'>
-                    <div className='space-y-16'>
-                        <h2 className='text-4xl font-light'>Certifications</h2>
+                    className='snap-center min-h-screen flex items-center opacity-0'>
+                    <div className='w-full space-y-6'>
+                        <div className='space-y-4'>
+                            <h2 className='text-4xl font-light'>
+                                Certifications
+                            </h2>
+                            <p className='text-muted-foreground max-w-xl text-sm'>
+                                Continuous learning through professional
+                                certifications and specialized courses
+                            </p>
+                        </div>
 
-                        <div className='grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8'>
-                            {data.certifications.map((certification, index) => (
+                        <div className='grid lg:grid-cols-2 gap-6'>
+                            {data.certifications.map((cert, index) => (
                                 <article
-                                    key={'cert_' + index}
-                                    className='group hover:border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg cursor-pointer'>
+                                    key={index}
+                                    className='group p-6 grid grid-cols-3 gap-4 border border-border rounded-lg hover:border-primary/50 hover:shadow-md transition-all duration-300 cursor-pointer bg-card'>
                                     <a
-                                        href={certification.link}
+                                        href={cert.link}
                                         target='_blank'
                                         rel='noopener noreferrer '>
                                         <img
                                             // loading='lazy'
                                             src={
                                                 courseraCertImgPrefix +
-                                                certification.credential_id
+                                                cert.credential_id
                                             }
-                                            alt={certification.title}
-                                            className='min-h-[150px] min-w-[150px] bg-foreground/5 w-full group-hover:p-2 h-auto mb-4 rounded-lg  hover:border-muted-foreground/50 transition-all duration-300'
+                                            alt={cert.title}
+                                            className='min-h-24 min-w-24 bg-foreground/5 w-full h-auto  rounded-lg  hover:border-muted-foreground/50 transition-all duration-300'
                                         />
                                     </a>
-                                    <div className='space-y-4 p-2 min-h-28 '>
-                                        <h3 className='text-lg line-clamp-3   font-medium group-hover:text-muted-foreground transition-colors duration-300'>
-                                            {certification.title}
-                                        </h3>
-                                        <div className='flex flex-wrap gap-2'>
-                                            {certification.skills
-                                                .slice(0, 5)
-                                                .map((skill, si) => (
+                                    <div className='space-y-4 col-span-2'>
+                                        <div className='space-y-1'>
+                                            <p className='text-sm text-primary font-medium'>
+                                                {cert.by}
+                                            </p>
+                                            <h3 className='text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300'>
+                                                {cert.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div className='col-span-full'>
+                                        <div className='text-xs text-muted-foreground/80 '>
+                                            {cert.completion_date}
+                                        </div>
+                                        <div className='flex items-start  flex-wrap gap-2 pt-4'>
+                                            {cert.skills
+                                                .slice(0, 4)
+                                                .map((skill) => (
                                                     <span
-                                                        key={
-                                                            index +
-                                                            '_skill_' +
-                                                            si
-                                                        }
-                                                        className='px-2.5 py-1 text-xs text-foreground/80 rounded-full border-2 border-muted-foreground/20 transition-colors duration-500'>
+                                                        key={skill}
+                                                        className='px-2.5 py-1 text-xs font-medium bg-secondary border border-primary/10 text-foreground rounded-full hover:border-primary/20 transition-all duration-300'>
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -393,6 +510,8 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+
+                {/* CONNECT */}
                 <section
                     id='connect'
                     ref={(el: any) => (sectionsRef.current[4] = el)}

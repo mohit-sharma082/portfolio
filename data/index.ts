@@ -36,7 +36,7 @@ type Profile = {
     }[];
     certifications: {
         title: string;
-        provider: string;
+        issuer: string;
         by: string;
         type: string;
         completion_date: string;
@@ -149,7 +149,7 @@ export const data: Profile = {
     certifications: [
         {
             title: 'Introduction to Software Engineering',
-            provider: 'Coursera',
+            issuer: 'Coursera',
             by: 'IBM',
             type: 'course',
             completion_date: 'January 28, 2026',
@@ -178,7 +178,7 @@ export const data: Profile = {
         },
         {
             title: 'Hands-on Introduction to Linux Commands and Shell Scripting',
-            provider: 'Coursera',
+            issuer: 'Coursera',
             by: 'IBM',
             type: 'course',
             completion_date: 'April 5, 2025',
@@ -205,8 +205,30 @@ export const data: Profile = {
             ],
         },
         {
+            title: 'Introduction to Computer Programming',
+            issuer: 'Coursera',
+            by: 'University of London',
+            type: 'course',
+            completion_date: 'February 12, 2026',
+            credential_id: 'DFREP16F6MPA',
+            link: 'https://www.coursera.org/account/accomplishments/verify/DFREP16F6MPA',
+            skills: [
+                'Software Development Tools',
+                'Data Management',
+                'Javascript',
+                'Development Environment',
+                'Human Computer Interaction',
+                'Computer Graphics',
+                'Computer Programming',
+                'Graphical Tools',
+                'Debugging',
+                'Computer Programming Tools',
+                'Interactive Design',
+            ],
+        },
+        {
             title: 'How Computers Work',
-            provider: 'Coursera',
+            issuer: 'Coursera',
             by: 'University of London',
             type: 'course',
             completion_date: 'July 17, 2025',
@@ -230,7 +252,7 @@ export const data: Profile = {
         },
         {
             title: 'Explore Core Data Concepts in Microsoft Azure',
-            provider: 'Coursera',
+            issuer: 'Coursera',
             by: 'Microsoft',
             type: 'course',
             completion_date: 'November 15, 2025',
@@ -256,7 +278,7 @@ export const data: Profile = {
         },
         {
             title: 'TypeScript Variables and Data Types',
-            provider: 'Coursera',
+            issuer: 'Coursera',
             by: 'Coursera',
             type: 'course',
             completion_date: 'December 8, 2025',
@@ -431,6 +453,8 @@ export const data: Profile = {
             },
             tech: [
                 'React',
+                'React Native',
+                'Android Studio',
                 'Node.js',
                 'MongoDB',
                 'TypeScript',
