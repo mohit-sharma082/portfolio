@@ -148,6 +148,25 @@ export const data: Profile = {
     ],
     certifications: [
         {
+            title: 'Introduction to Android Mobile Application Development',
+            issuer: 'Coursera',
+            by: 'Meta',
+            type: 'course',
+            completion_date: 'May 01, 2026',
+            credential_id: 'SKN9VC2MQOGP',
+            link: 'https://www.coursera.org/account/accomplishments/verify/SKN9VC2MQOGP',
+            skills: [
+                'Kotlin',
+                'Mobile Development',
+                'Android Development',
+                'Gradle',
+                'Android Studio',
+                'Development Environment',
+                'UI Components',
+                'Virtual Environment',
+            ],
+        },
+        {
             title: 'Introduction to Software Engineering',
             issuer: 'Coursera',
             by: 'IBM',
