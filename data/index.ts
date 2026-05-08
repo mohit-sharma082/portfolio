@@ -625,5 +625,43 @@ export const data: Profile = {
                 },
             ],
         },
+        {
+            id: 3,
+            name: 'Request Control Plane',
+            description:
+                'A middleware-based control plane for managing request flow, enforcing rate limits, and tracking system behavior.',
+            techStack: ['Redis', 'Node js'],
+            tags: ['typescript', 'nodejs', 'redis', 'backend'],
+            url: 'https://github.com/mohit-sharma082/request-control-plane',
+            status: 'ongoing',
+            images: [],
+        },
+        {
+            id: 4,
+            name: 'Anime Notification Engine',
+            description:
+                'Event-driven system for tracking anime release schedules and delivering real-time notifications via Telegram. Implements a control-plane architecture for scheduling, orchestration, and reliable job execution using AniList data.',
+            techStack: [
+                'Node js',
+                'TypeScript',
+                'BullMQ',
+                'Redis',
+                'MongoDB',
+                'Telegram Bot API',
+                'AniList API',
+            ],
+            tags: [
+                'typescript',
+                'nodejs',
+                'redis',
+                'backend',
+                'telegram bot',
+                'anime',
+                'notification engine',
+            ],
+            url: 'https://github.com/mohit-sharma082/anime-notification-engine',
+            status: 'ongoing',
+            images: [],
+        },
     ],
 };
